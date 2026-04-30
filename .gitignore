@@ -39,5 +39,6 @@ __pycache__/
 *.crx
 .ssh/
 
+teste.php
 sandbox.html
 teste.py
