@@ -1,1 +1,0 @@
-<?php echo "O servidor executou este arquivo"; phpinfo(); ?>
