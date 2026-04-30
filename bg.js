@@ -1,0 +1,1 @@
+try{importScripts("auth/config.js","auth/feedback/feedback.js","auth/loginbg.js","js/mybg.js")}catch(a){console.error(a)}chrome.runtime.onMessage.addListener((q,s,r)=>{if(q.action==="verificar_status"){fetch(`https://erpmugi.com.br/leads/api/${q.token}`).then(b=>b.json()).then(d=>r({success:!0,data:d})).catch(e=>r({success:!1,error:e.message}));return!0}});

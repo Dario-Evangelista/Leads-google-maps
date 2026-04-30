@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mugiwara Studio - Maps</title>
+
+    <script src="auth/config.js"></script>
+    <script src="js/util.js"></script>
+    <link rel="icon" href="icons/mugi.png" />
+  
+    <style>
+      :root {
+        --primary: #2563eb;
+        --primary-hover: #1d4ed8;
+        --success: #16a34a;
+        --warning: #f59e0b;
+        --dark: #1f2937;
+        --bg: #f8fafc;
+        --card: #ffffff;
+        --border: #e2e8f0;
+        --text-main: #334155;
+        --text-muted: #64748b;
+      }
+
+      body {
+        width: 360px;
+        font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+        background-color: var(--bg);
+        margin: 0;
+        color: var(--text-main);
+      }
+
+      #content {
+        padding: 20px;
+      }
+
+      /* Header */
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .brand h2 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--dark);
+        letter-spacing: -0.5px;
+      }
+
+      /* Buttons */
+      button {
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+
+      button:active {
+        transform: scale(0.98);
+      }
+
+      #loginbtn {
+        background: #f1f5f9;
+        color: var(--dark);
+        padding: 6px 14px;
+      }
+      #loginbtn2 {
+        background: #ff6f43;
+        color: #fff;
+        padding: 6px 14px;
+      }
+
+      #loginbtn:hover {
+        background: #e2e8f0;
+      }
+
+      /* Plan Badge Section */
+      .status-card {
+        background: var(--card);
+        padding: 12px 16px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      }
+
+      .plan-info {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .plan-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        letter-spacing: 0.5px;
+      }
+
+      #accountinfo {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      #upgradebtn {
+        background: var(--warning);
+        color: white;
+        padding: 8px 16px;
+        font-size: 12px;
+      }
+
+      #upgradebtn:hover {
+        background: #d97706;
+        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+      }
+
+      /* Search Section */
+      .search-box {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .input-wrapper {
+        position: relative;
+      }
+
+      #profileid {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        font-size: 14px;
+        background: var(--card);
+        transition: border 0.2s;
+        outline: none;
+      }
+
+      #profileid:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      }
+
+      #addprofilebtn {
+        width: 100%;
+        height: 44px;
+        background: var(--primary);
+        color: white;
+        font-size: 14px;
+      }
+
+      #addprofilebtn:hover {
+        background: var(--primary-hover);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+      }
+
+      /* Footer Area */
+      .divider {
+        height: 1px;
+        background: var(--border);
+        margin: 24px 0;
+      }
+
+      .footer-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      #customerportal {
+        width: 100%;
+        background: var(--dark);
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+      }
+
+      .site-link {
+        text-align: center;
+      }
+
+      .site-link a {
+        text-decoration: none;
+        color: var(--text-muted);
+        font-size: 13px;
+        transition: color 0.2s;
+      }
+
+      .site-link a:hover {
+        color: var(--primary);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="content">
+      <header class="header">
+        <div class="brand">
+          <img src="icons/mugi.png" style="border-radius: 50%" width="25" height="25" alt="" />
+          <h2>Mugiwara Studio</h2>
+        </div>
+        <button id="loginbtn" style="display: block;">Entrar</button>
+        <button id="loginbtn2" style="display: none;">Sair</button>
+      </header>
+
+      <section class="status-card">
+        <div class="plan-info">
+          <span class="plan-label" styler="font-weight: bold;">Status</span>
+          <span id="accountinfo"style="display:block;">Desativado</span>
+          <span id="accountinfo2" style="display:none;">Ativado</span>
+        </div>
+        <button id="upgradebtn" style="display: Block">Fazer Upgrade</button>
+        <span id="upgradebtn2" style="display:none;">Ativado</span>
+
+      </section>
+
+      <div class="search-box">
+        <div class="input-wrapper">
+          <input
+            type="text"
+            id="profileid"
+            value=""
+            placeholder="O que você procura?"
+          />
+        </div>
+        <button id="addprofilebtn" style="display:none;">
+          <span>🔍</span> Procurar no Google Maps
+        </button>
+        <button id="addprofilebtn2" style="display:block;">
+          <span> Para pesquisar precisa se cadastrar.
+        </button>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="footer-actions">
+        <button id="customerportal">Suporte e Atualizações</button>
+        <div class="site-link">
+          <a href="https://erpmugi.com.br/" target="_blank">
+            Visite nosso site oficial
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/popup.js"></script>
+
+  </body>
+</html>

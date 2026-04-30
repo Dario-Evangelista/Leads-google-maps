@@ -1,0 +1,2 @@
+chrome.runtime.onMessage.addListener(function(a,c,g){return"openPage"===a.action?(chrome.storage.local.set({leads:a.data},function(){chrome.tabs.create({url:"dashboard.html"})}),!1):"openReviewPage"===a.action?(chrome.storage.local.set({leads:a.data},function(){chrome.tabs.create({url:"reviews.html"})}),!1):"access"===a.action?((async()=>{const d=await fetchUrlContent(a.data.url);g(d)})(),!0):"email"===a.action?((async()=>{var d=a.data;d=await extractemail(d.website,d.name,d.deep_search);const h=
+{};for(const l in d)h[l]=Array.from(d[l]);g(h)})(),!0):!1});

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Export Leads</title>
+    <link href="lib/tabulator/css/semantic-ui/tabulator_semantic-ui.min.css" rel="stylesheet" />
+    <link href="css/dashboard.css" rel="stylesheet" />
+    <script type="text/javascript" src="lib/tabulator/js/tabulator.min.js"></script>
+    <script type="text/javascript" src="lib/xlsx.full.min.js"></script>
+    <script src="lib/fetch.umd.js"></script>
+    <script src="lib/jquery-3.1.1.min.js"></script>
+    <script src="js/util.js"></script>
+    <script src="auth/config.js"></script>
+    <script src="auth/pay/rolecheck.js"></script>
+    <style>
+    :root {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --bg: #0f172a;
+    --card: #111827;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+    --border: #1f2933;
+    --success: #10b981;
+}
+
+/* Reset */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 16px;
+    font-family: Inter, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* Layout */
+#maincontent {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#content {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+/* Header */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+/* Botões */
+button {
+    background: var(--primary);
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+/* Botão secundário */
+#download-csv {
+    background: #374151;
+}
+
+#download-csv:hover {
+    background: #4b5563;
+}
+
+/* Botão destaque */
+#upload-xlsx {
+    background: var(--success);
+}
+
+#upload-xlsx:hover {
+    background: #059669;
+}
+
+/* Info */
+#accountinfo {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+#datastatus {
+    margin: 8px 0;
+    font-size: 12px;
+}
+
+/* Tabela */
+#example-table {
+    margin-top: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Tabulator override */
+.tabulator {
+    background: #020617 !important;
+    border: none;
+}
+
+.tabulator .tabulator-header {
+    background: #020617 !important;
+    border-bottom: 1px solid var(--border);
+}
+
+.tabulator .tabulator-col {
+    background: #020617 !important;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.tabulator-row {
+    background: #020617 !important;
+    border-bottom: 1px solid var(--border);
+}
+
+.tabulator-row:hover {
+    background: #111827 !important;
+}
+
+.tabulator-cell {
+    color: var(--text);
+    font-size: 12px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    button {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+</style>
+</head>
+
+<body>
+    <div id="maincontent">
+        <div id="content">
+            <div style="display: flex; flex-direction: row; gap: 20px;">
+                <div style="display: flex; gap: 20px;">
+                    <button id="download-csv">Download CSV</button>
+                    <button id="download-xlsx">Download XLSX</button>
+                    <button id="upload-xlsx">Salvar na minha conta</button>
+                </div>
+                <div><span id="accountinfo" style="font-weight: bold; font-size: 16px;"></span></div>
+            </div>
+            <div><span id="datastatus" style="color: red;"></span></div>
+            <div id="example-table"></div>
+        </div>
+    </div>
+</body>
+
+<script src="config.js"></script>
+<script src="js/popup.js"></script>
+
+
+
+</html>
